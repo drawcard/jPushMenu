@@ -1,0 +1,155 @@
+/* General styles for all menus */
+/*=============================================>>>>>
+= Global Variables =
+= Edit basic settings here! =
+===============================================>>>>>*/
+// Set the basic colour of the menu
+// Accent colours are derived from this setting
+$primary-menu-color: $c1;
+// The width of the vertical menu system
+$vertical-width: 240px;
+// The depth of the horizontal menu system
+$horizontal-depth: 150px;
+
+/*= End of Global Variables =*/
+/*=============================================<<<<<*/
+.cbp-spmenu {
+  background: $primary-menu-color;
+  position: fixed;
+  padding-top: 100px;
+  a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      background: darken($primary-menu-color, 20%);
+    }
+    &:active {
+      background: desaturate($primary-menu-color, 100%);
+      color: $primary-menu-color;
+    }
+  }
+  .cbp-spmenu h3 {
+    color: darken($primary-menu-color, 40%);
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    background: darken($primary-menu-color, 20%);
+  }
+  ul {
+    padding-left: 0;
+    font-size: 2rem;
+  }
+  li {
+    list-style-type: none;
+    ul {
+      background: darken($primary-menu-color, 2%);
+      font-size: 1.8rem;
+      font-style: italic;
+    }
+  }
+}
+/* Orientation-dependent styles for the content of the menu */
+.cbp-spmenu-vertical {
+  width: $vertical-width;
+  height: 100%;
+  top: 0;
+  z-index: 1000;
+  a {
+    // border-bottom: 1px solid darken($primary-menu-color, 20%);
+    padding: 1em;
+  }
+}
+.cbp-spmenu-horizontal {
+  width: 100%;
+  height: $horizontal-depth;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  h3 {
+    height: 100%;
+    width: 20%;
+    float: left;
+  }
+  a {
+    float: left;
+    width: 20%;
+    padding: 0.8em;
+    // border-left: 1px solid darken($primary-menu-color, 20%);
+  }
+}
+/* Vertical menu that slides from the left or right */
+.cbp-spmenu-left {
+  left: (-$vertical-width);
+}
+.cbp-spmenu-right {
+  right: (-$vertical-width);
+}
+.cbp-spmenu-left.cbp-spmenu-open {
+  left: 0;
+}
+.cbp-spmenu-right.cbp-spmenu-open {
+  right: 0;
+}
+/* Horizontal menu that slides from the top or bottom */
+.cbp-spmenu-top {
+  top: (-$horizontal-depth);
+}
+.cbp-spmenu-bottom {
+  bottom: (-$horizontal-depth);
+}
+.cbp-spmenu-top.cbp-spmenu-open {
+  top: 0;
+}
+.cbp-spmenu-bottom.cbp-spmenu-open {
+  bottom: 0;
+}
+/* Push classes applied to the body */
+.cbp-spmenu-push {
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+}
+.cbp-spmenu-push-toright {
+  left: $vertical-width;
+}
+.cbp-spmenu-push-toleft {
+  left: (-$vertical-width);
+}
+/* Transitions */
+.cbp-spmenu,
+.cbp-spmenu-push {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+/* Example media queries */
+@media screen and (max-width: 55.1875em) {
+  .cbp-spmenu-horizontal {
+    font-size: 75%;
+    height: 110px;
+  }
+  .cbp-spmenu-top {
+    top: -110px;
+  }
+  .cbp-spmenu-bottom {
+    bottom: -110px;
+  }
+}
+@media screen and (max-height: 26.375em) {
+  .cbp-spmenu-vertical {
+    font-size: 90%;
+    width: 190px;
+  }
+  .cbp-spmenu-left,
+  .cbp-spmenu-push-toleft {
+    left: -190px;
+  }
+  .cbp-spmenu-right {
+    right: -190px;
+  }
+  .cbp-spmenu-push-toright {
+    left: 190px;
+  }
+}
